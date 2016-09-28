@@ -32,6 +32,7 @@ For a more detailed introduction, we suggest the following ***free*** resources
 - [R programming wiki](https://en.wikibooks.org/wiki/R_Programming)
 - [Quick R](http://www.statmethods.net/)
 
+# R basics
 
 ## Advantages of R
 
@@ -72,7 +73,7 @@ Keith Baggerly's talk on the subject is highy-recommended.
 - [Blogs](http://www.r-bloggers.com/)
 - Local [user groups](http://blog.revolutionanalytics.com/local-r-groups.html) 
 - Documentation via `?` or `help.start()`
-
+- Documentation for packages is found via the Packages tab in the bottom-right of RStudio.
 
 
 
@@ -239,6 +240,24 @@ rnorm(10, 2, 3)
 
 In the examples above, `seq` and `rnorm` were both outputting a series of numbers, which is called a *vector* in R and is the most-fundamental data-type.
 
+
+******
+******
+******
+
+
+
+### Exercise
+
+  - How can we a create a sequence from 2 to 20 comprised of 5 equally-spaced numbers?
+    + check the help page for seq `?seq`
+  - What is the value of `pi` to 3 decimal places?
+    + see the help for `round` `?round`
+    
+******
+******
+******
+
 ## Vectors
 
 - The basic data structure in R is a **vector** -- an ordered collection of values. 
@@ -251,6 +270,31 @@ x <- c(3,4,5,6)
 x
 ```
 
+
+The `seq` function we saw before was another example of how to create a sequence of values. A useful shortcut is to use the `:` symbol. 
+
+```{r}
+x <- 3:6
+x
+```
+
+
+******
+******
+******
+
+### Exercise
+  - `rep` can be used to replicate values. Construct the following sequences 
+    + `1 1 1 1 1 2 2 2 2 2`
+    + `1 2 1 2 1 2 1 2 1 2`
+    + `1 2 1 2 1 2 1 2 1 2 1`
+    + (this last sequence has 11 values in it)
+
+******
+******
+******
+
+
 The square brackets `[]` indicate the position within the vector (the ***index***). We can extract individual elements by using the `[]` notation:
 
 ```{r vectors2}
@@ -260,10 +304,21 @@ x[4]
 
 We can even put a vector inside the square brackets: (*vector indexing*)
 
-```{r vectors3}
-y <- c(2,3)
-x[y]
-```
+
+******
+******
+******
+
+### Exercise
+**Without using R!**
+  - If `y <- 2:4`, what would `x[y]` give?
+    + `[1]  3  5 `
+    + `[1]  2  4`
+    + `[1]  4  5  6`
+
+******
+******
+******
 
 
 When applying all standard arithmetic operations to vectors, application is element-wise. Thus, we say that R supports *vectorised* operations.
@@ -279,11 +334,23 @@ x + y
 
 Vectorised operations are extremely powerful. Operations that would require a *for* loop (or similar) in other languages such as **C**, **Python**, can be performed in a single line of R code.
 
-A vector can also contain text; called a character vector. Such a vector can also be constructed using the `c` function.
+A vector can also contain text; called a character vector. Such a vector can also be constructed using the `c` function. 
 
 ```{r}
 x <- c("A","B","C","D")
 ```
+
+The quote marks are crucial. Why?
+
+```{r eval=FALSE}
+x <- c(A, B, C, D)
+```
+
+```{r echo=FALSE}
+tt <- try(x <- c(A, B, C, D),silent = TRUE)
+cat(tt)
+```
+
 
 Another useful type of data that we will see is the *logical* or *boolean* which can take either the values of `TRUE` or `FALSE`
 
@@ -296,7 +363,7 @@ Logical values are useful when we want to create subsets of our data. We can use
 ```{r}
 x <- c("A","A", "B","B","C")
 x == "A"
-
+x != "A"
 x <- rnorm(10)
 x > 0
 ```
@@ -307,6 +374,10 @@ However, all items in the vector **must** be the same type. If you attempt anyth
 x <- c(1, 2, "three")
 x
 ```
+
+
+
+
 
 ## Packages in R
 
@@ -340,7 +411,7 @@ A package may have several *dependancies*; other R packages from which it uses f
 
 **So long as you stick with the same version of R, you won't need to repeat this install process.**
 
-# R walkthrough
+# Dealing with data
 
 We are going to explore some of the basic features of R using data from the [gapminder](https://www.gapminder.org/data/) project, which have been bundled into an [R package](https://github.com/jennybc/gapminder). These data give various indicator variables for different countries around the world (life expectancy, population and Gross Domestic Product). We have saved these data as a `.csv` file to demonstrate how to import data into R.
 
@@ -348,7 +419,7 @@ You can download these data [here](https://raw.githubusercontent.com/bioinformat
 
 ## The working directory
 
-Like other software (Word, Excel, Photoshop....), R has a default location where it will save files to and import data from. Equivalent to selecting ***File - Save*** or ***File - Open*** from those other tools, we don't have to tell R where we want data and plots etc to be saved. This is known as the *working directory* in R. You can query what R currently considers its working directory by doing:-
+Like other software (Word, Excel, Photoshop....), R has a default location where it will save files to and import data from. This is known as the *working directory* in R. You can query what R currently considers its working directory by doing:-
 
 ```{r eval=FALSE}
 getwd()
@@ -366,16 +437,22 @@ Any `.csv` file in the working directory can be imported into R by supplying the
 
 ```{r}
 file.exists("gapminder.csv")
+```
+
+If the file we want to read is not in the current working directory, we will have to write the path to the file; either *relevant* to the current working directory (e.g. the directory "up" from the current working directory, or in a sub-folder), or the full path. In an interactive session, you can do use `file.choose` to open a dialogue box. The path to the the file will then be displayed in R.
+
+```{r eval=FALSE}
+file.choose()
+```
+
+Assuming the file can be found, we can use `read.csv` to import. Other functions can be used to read tab-delimited files (`read.delim`) or a generic `read.table` function. A data frame object is created.
+
+```{r}
 gapminder <- read.csv("gapminder.csv")
 ```
 
 The data frame object in R allows us to work with "tabular" data, like we might be used to dealing with in Excel, where our data can be thought of having rows and columns. The values in each column have to all be of the same type (i.e. all numbers or all text).
 
-In Rstudio , you can view the contents of the data frame we have just created. This is useful for interactive exploration of the data, but not so useful for automation and scripting and analyses.
-
-```{r eval=FALSE}
-View(gapminder)
-```
 
 ******
 ******
@@ -393,16 +470,21 @@ View(gapminder)
 ******
 ******
 
-```{r echo=FALSE}
-dim(gapminder)
-colnames(gapminder)
+
+
+In Rstudio , you can view the contents of the data frame we have just created. This is useful for interactive exploration of the data, but not so useful for automation and scripting and analyses.
+
+```{r eval=FALSE}
+View(gapminder)
 ```
 
+We should always check the data frame that we have created. Sometimes R will happily read data using an inappropriate function and create an object without raising an error. However, the data might be unsuable. Consider:-
 
-******
-******
-******
-
+```{r}
+test <- read.delim("gapminder.csv")
+head(test)
+dim(test)
+```
 
 
 We can access the columns of a data frame by knowing the column name. 
@@ -417,7 +499,6 @@ A vector (1-dimensional) is returned, the length of which is the same as the num
 
 ```{r, echo=FALSE}
 countries <- gapminder$country
-length(countries)
 ```
 
 
@@ -481,30 +562,31 @@ gapminder
 
 Should we wish to see all rows, or all columns, we can neglect either the row or column index
 
-******
-******
-******
-
-### Exercise
-
-- Make sure you can understand the behaviour of the following commands
-
 ```{r eval=FALSE}
 gapminder[1,]
 gapminder[,1]
-gapminder[,c(1,2)]
+```
+
+Just like subsetting a vector, the indices can be vectors containing multiple values
+
+```{r eval=FALSE}
+gapminder[1:3,1:2]
+gapminder[seq(1,1704,length.out = 10),1:4]
 ```
 
 
-******
-******
-******
-
-- **HINT** `head` is commonly-used to give a snapshot of a data frame.
+A common shortcut is `head` which prints the first six rows of a data frame.
    
 ```{r}
 head(gapminder)
 ```
+
+When subsetting entire rows ***you need to remember the , after the row indices***. If you fail to do so, R may still return a result. However, it probably won't be what you expected. Look what happens tf you wanted to the first three rows but typed the following command
+
+```{r eval=FALSE}
+gapminder[1:3]
+```
+
 
 Rather than selecting rows based on their *numeric* index (as in the previous example) we can use what we call a *logical test*. This is a test that gives either a `TRUE` or `FALSE` result. When applied to subsetting, only rows with a `TRUE` result get returned.
 
@@ -514,7 +596,7 @@ For example we could compare the `lifeExp` variable to 40. The result is a *vect
 gapminder$lifeExp < 40
 ```
 
-This R code can be put inside the square brackets to select rows of interest (those observations where the life expectancy variable is less than 40. 
+This R code can be put inside the square brackets to select rows of interest (those observations where the life expectancy variable is less than 40). 
 
 ```{r eval=FALSE}
 gapminder[gapminder$lifeExp < 40, ]
@@ -578,6 +660,7 @@ gapminder[gapminder$country == "Zambia" & gapminder$lifeExp < 40,]
 gapminder[gapminder$pop < 1e6 & gapminder$year == 2002,]
 ```
 
+- A data frame of countries with a population less than a million in the year 2002, that are not in Africa?
 
 ******
 ******
@@ -609,9 +692,19 @@ head(byWealth)
 write.csv(byWealth, file="dataOrderedByWealth.csv")
 ```
 
+We can even order by more than one condition
+
+```{r eval=FALSE}
+gapminder[order(gapminder$year, gapminder$country),]
+```
+
+```{r echo=FALSE}
+head(gapminder[order(gapminder$year, gapminder$lifeExp),])
+```
 
 
-## Simple plotting
+# Plotting and stats (in brief!)
+
 All your favourite types of plot can be created in R
 
 ```{r echo=FALSE}
