@@ -1,0 +1,6 @@
+{
+  "name": "R-crash-course",
+  "tagline": "A half-day (ish) introduction to the R language",
+  "body": "# Description\r\n\r\nThis is intended to be a short introduction, or crash-course, to those wanting to learn the R language. It may be helpful to those with experience of other programming languages and familiar with general concepts of data analysis and programming. You might also use it as a refresher before more intermediate courses; such as our[Data manipulation and Visualisation using R course](http://bioinformatics-core-shared-training.github.io/r-intermediate/)\r\n\r\n# Materials\r\n\r\n\r\n\r\n# Further Reading\r\n\r\n- [Solving Biological Problems with R](http://cambiotraining.github.io/r-intro/)\r\n- [Introduction to Data Science with R](http://shop.oreilly.com/product/0636920034834.do)\r\n- [Coursera course in R](http://blog.revolutionanalytics.com/2012/12/coursera-videos.html)\r\n- [Beginners Introduction to R Statistical Software](http://bitesizebio.com/webinar/20600/beginners-introduction-to-r-statistical-software/)\r\n- [R programming wiki](https://en.wikibooks.org/wiki/R_Programming)\r\n- [Quick R](http://www.statmethods.net/)\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
