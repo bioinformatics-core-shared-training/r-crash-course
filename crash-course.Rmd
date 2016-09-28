@@ -2,7 +2,7 @@
 title: "R Recap"
 author: "Mark Dunning"
 date: '`r format(Sys.time(), "Last modified: %d %b %Y")`'
-output: html_document
+output: pdf_document
 ---
 
 
@@ -311,6 +311,7 @@ We can even put a vector inside the square brackets: (*vector indexing*)
 
 ### Exercise
 **Without using R!**
+
   - If `y <- 2:4`, what would `x[y]` give?
     + `[1]  3  5 `
     + `[1]  2  4`
@@ -531,19 +532,8 @@ summary(gapminder)
 
 A data frame can be subset using square brackes`[]` placed after the name of the data frame. As a data frame is a two-dimensional object, you need a *row* and *column* index, or vector indices. 
 
-*Disclaimer 1*:- later in the course, we will see a slightly-nicer way of subsetting and filtering which will be useful in some circumstances
 
-******
-******
-******
 
-### Exercise
-
-- Make sure you can understand the behaviour of the following commands
-
-******
-******
-******
 
 ```{r eval=FALSE}
 gapminder[1,2]
@@ -744,8 +734,6 @@ pie(c(Sky = 78, "Sunny side of pyramid" = 17, "Shady side of pyramid" = 5),
     + [Introductory R course](http://cambiotraining.github.io/r-intro/)
     + [Quick-R](http://www.statmethods.net/graphs/index.html)
     
-*Disclaimer 2*:- later in the course, we will see a slightly-nicer way of plotting using `ggplot2`.
-
 Plots can be constructed from vectors of numeric data, such as the data we get from a particular column in a data frame
 
 ```{r}
@@ -757,6 +745,8 @@ Scatter plots of two variables require two arguments; one for the `x` and one fo
 ```{r}
 plot(gapminder$pop,gapminder$lifeExp)
 ```
+
+What are those points on the right? We'll find out soon...
 
 Barplots are commonly-used for counts of categorical data
 
