@@ -1,0 +1,51 @@
+---
+title: "Gapminder Analysis"
+author: "You!"
+date: "28 September 2016"
+output: html_document
+---
+
+Reading the data from `.csv`
+
+```{r}
+###
+##YOUR CODE
+###
+
+
+```
+
+
+Making a subset of European countries
+
+
+```{r}
+###
+##YOUR CODE
+###
+
+
+```
+
+
+Plot GDP against Life Expectancy and calculate correlation
+
+
+```{r}
+
+###
+##YOUR CODE
+###
+
+
+```
+
+
+The correlation between GDP and Life Expectancy is XXXX
+
+The R packages used were:-
+
+```{r}
+sessionInfo()
+```
+
