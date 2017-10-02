@@ -571,7 +571,7 @@ A common shortcut is `head` which prints the first six rows of a data frame.
 head(gapminder)
 ```
 
-When subsetting entire rows ***you need to remember the , after the row indices***. If you fail to do so, R may still return a result. However, it probably won't be what you expected. Look what happens tf you wanted to the first three rows but typed the following command
+When subsetting entire rows ***you need to remember the , after the row indices***. If you fail to do so, R may still return a result. However, it probably won't be what you expected. Look what happens if you wanted to the first three rows but typed the following command
 
 ```{r eval=FALSE}
 gapminder[1:3]
