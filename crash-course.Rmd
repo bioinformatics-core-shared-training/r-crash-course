@@ -1,8 +1,11 @@
 ---
-title: "R Recap"
+title: "R Crash Course"
 author: "Mark Dunning"
 date: '`r format(Sys.time(), "Last modified: %d %b %Y")`'
-output: html_document
+output: 
+  html_notebook: 
+    toc: yes
+    toc_float: yes
 ---
 
 
@@ -44,8 +47,9 @@ The R programming language is now recognised beyond the academic community as an
 - [google](http://blog.revolutionanalytics.com/2009/05/google-using-r-to-analyze-effectiveness-of-tv-ads.html),
 - [Microsoft](http://blog.revolutionanalytics.com/2014/05/microsoft-uses-r-for-xbox-matchmaking.html) (who recently [invested](http://blogs.microsoft.com/blog/2015/01/23/microsoft-acquire-revolution-analytics-help-customers-find-big-data-value-advanced-statistical-analysis/) in a commerical provider of R)
 - The [New York Times](http://blog.revolutionanalytics.com/2011/03/how-the-new-york-times-uses-r-for-data-visualization.html).
-- [Buzzfeed](http://blog.revolutionanalytics.com/2015/12/buzzfeed-uses-r-for-data-journalism.html) use R for some of their serious articles (i.e. not the ones featuring cat pictures), and have made the code [publically available](https://buzzfeednews.github.io/2016-04-federal-surveillance-planes/analysis.html)
+- [Buzzfeed](http://blog.revolutionanalytics.com/2015/12/buzzfeed-uses-r-for-data-journalism.html) use R for some of their serious articles and have made the code [publically available](https://buzzfeednews.github.io/2016-04-federal-surveillance-planes/analysis.html)
 - The [New Zealand Tourist Board](https://mbienz.shinyapps.io/tourism_dashboard_prod/) have R running in the background of their website
+- The BBC makes code available for some of their stories (e.g. [gender bias in music festivals](https://github.com/BBC-Data-Unit/music-festivals))
 - [Airbnb](https://medium.com/airbnb-engineering/using-r-packages-and-education-to-scale-data-science-at-airbnb-906faa58e12d)
 ![](https://cdn-images-2.medium.com/max/1200/1*BTMbVFh_hziJJcaQ7TBRwg.png)
 
@@ -89,7 +93,7 @@ Keith Baggerly's talk on the subject is highy-recommended.
 - [Available Support](https://support.bioconductor.org/)
     + Often you will be able to interact with the package maintainers / developers and other power-users of the project software
 - Annual conferences in U.S and Europe
-    - The last European conference was in [Cambridge](https://sites.google.com/site/eurobioc2015/)
+
     
 
 
@@ -519,7 +523,7 @@ summary(gapminder)
 - Save the life expectancy and population as variables
     + what is the maximum life expectancy?
     + what is the smallest population?
-    + round the life expectancy and populations to the nearest whole numbers
+    + round the life expectancy to the nearest whole number
     + HINT:- `min`, `max`, `round`.....
     
 ******
@@ -964,7 +968,7 @@ Let's create a new Markdown file with **File -> New File -> R markdown** and loo
 
 The markdown file can be used as a template to generated PDF, HTML, or even Word documents. The clever bit is that all R code in the template can be execute and the results displayed (tables, graphics etc) along with the code. The compiled document can be passed to your collaborators and they should be able to generate the same results. Alternatively, you can choose to hide the code if your PI just wants to see the results, and not neccesarily what packages, parameters you used. Long-term R users may have heard of *Sweave*. Markdown is the same concept, but an easier to write (and read) syntax
 
-Markdown can also generate presentations and courses. Indeed, all the [materials for this course](https://github.com/cambiotraining/r-crash-course) were written in markdown.
+Markdown can also generate presentations and courses. Indeed, all the [materials for this course](https://bioinformatics-core-shared-training.github.io/r-crash-course/) were written in markdown.
 
 ![](images/markdown-annotated.png)
 
@@ -987,7 +991,7 @@ Hitting the ***Knit*** button (*) will run all R code in order and (providing th
 
 ### Exercise
 
-- Open the file `gapminder-analysis.Rmd`
+- Open the file `[gapminder-analysis.Rmd](gapminder-analysis.Rmd)`
 - Fill the gaps to complete the analysis described above
 - Make a note of the correlation coefficient in the report
 - Knit into a pdf or HTML document
