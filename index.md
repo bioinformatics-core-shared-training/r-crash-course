@@ -4,7 +4,7 @@ This is intended to be a short introduction, or crash-course, to those wanting t
 
 # Materials
 
-- [Compiled](crash-course.nd.html) 
+- [Compiled](crash-course.nb.html) 
 - [Source (R markdown)](crash-course.Rmd)
 
 # Further Reading and Viewing
