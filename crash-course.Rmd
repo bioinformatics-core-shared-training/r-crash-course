@@ -698,10 +698,11 @@ gapminder[gapminder$country == "Zambia" & gapminder$lifeExp < 40,]
 
 ### Exercise
 
-- Can you create a data frame of countries with a population less than a million in the year 2002
+- Can you create a data frame of countries with a population less than a million in the year 2002?
 
 ```{r echo=FALSE}
-gapminder[gapminder$pop < 1e6 & gapminder$year == 2002,]
+
+
 ```
 
 - A data frame of countries with a population less than a million in the year 2002, that are not in Africa?
