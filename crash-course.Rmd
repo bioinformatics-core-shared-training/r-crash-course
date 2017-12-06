@@ -1006,11 +1006,7 @@ Having an R script to do the analysis is fine, but what we really want is a docu
 - The code might have different options which dictate how the output is displayed in the compiled document (e.g. HTML)
     + e.g. you might see `EVAL = FALSE` or `echo = FALSE`
     + you don't have to worry about this if stepping through the markdown interactively
-
-```{r}
-print("Hello World")
-
-```
+``
 
 *This will be displayed in italic*
 
@@ -1034,7 +1030,7 @@ Markdown can also generate presentations and courses. Indeed, all the [materials
 
 Each line of R code can be executed in the R console by placing the cursor on the line and pressing `CTRL + ENTER`. You can also highlight multiple lines of code. NB. You do not need to highlight to the backtick (`\``) symbols. 
 
-Hitting the ***Knit*** button (*) will run all R code in order and (providing there are no errors!) you will get a PDF or HTML document. The resultant document will contain all the plain text you wrote, the R code, and any outputs (including graphs, tables etc) that R produced. You can then distribute this document to have a reproducible account of your analysis.
+Hitting the ***Knit*** button (*) or Preview will run all R code in order and (providing there are no errors!) you will get a PDF or HTML document. The resultant document will contain all the plain text you wrote, the R code, and any outputs (including graphs, tables etc) that R produced. You can then distribute this document to have a reproducible account of your analysis.
 
 
 
