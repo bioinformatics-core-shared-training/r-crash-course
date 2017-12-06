@@ -284,6 +284,13 @@ In the examples above, `seq` and `rnorm` were both outputting a series of number
   - What is the value of `pi` to 3 decimal places?
     + see the help for `round` `?round`
     
+```{r}
+
+
+
+```
+    
+    
 ******
 ******
 ******
@@ -319,6 +326,13 @@ x
     + `1 2 1 2 1 2 1 2 1 2`
     + `1 2 1 2 1 2 1 2 1 2 1`
     + (this last sequence has 11 values in it)
+    
+```{r}
+
+
+
+```
+    
 
 ******
 ******
@@ -496,6 +510,13 @@ The data frame object in R allows us to work with "tabular" data, like we might 
 - What are the dimensions of the data frame?
 - What columns are available?
   + HINT: see the `dim`, `ncol`, `nrow` and `colnames` functions
+  
+```{r}
+
+
+
+```
+  
  
 ******
 ******
@@ -551,6 +572,13 @@ summary(gapminder)
     + what is the smallest population?
     + round the life expectancy to the nearest whole number
     + HINT:- `min`, `max`, `round`.....
+    
+```{r}
+
+
+
+```
+    
     
 ******
 ******
@@ -700,6 +728,12 @@ gapminder[gapminder$pop < 1e6 & gapminder$year == 2002,]
 ```
 
 - A data frame of countries with a population less than a million in the year 2002, that are not in Africa?
+
+```{r}
+
+
+```
+
 
 ******
 ******
@@ -944,6 +978,13 @@ boxplot(gapminder$gdpPercap ~ gapminder$continent,col=brewer.pal(5,"Set1"),
   + which countries years do they points represent?
   + can you plot these points in a different colour?
   + could you exclude these points from the plot?
+  
+```{r}
+
+
+
+```
+  
 
 ******
 ******
