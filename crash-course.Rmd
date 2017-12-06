@@ -112,9 +112,34 @@ To get started, you will need to install the [latest version of R](https://cran.
 
 Once installed, you should be able to launch RStudio by clicking on its icon:-
 
+
 ![](http://www.rstudio.com/wp-content/uploads/2014/03/blue-125.png)
 
-The bottom-left with the blinking cursor is the R console `>` and ready for you to start entering R commands
+## Entering commands in R
+
+- The traditional way to enter R commands is via the Terminal, or using the console in RStudio (bottom-left panel when RStudio opens for first time).
+- However, for this course we will use a relatively new feature called *R markdown*.
+- An R markdown mixes plain text with R code
+- The R code can be run from inside the document and the results are displayed directly underneath
+- Each chunk of R code looks something like this.
+
+```{r}
+
+```
+
+
+- Each line of R can be executed by clicking on the line and pressing CTRL and ENTER
+- Or you can press the green triangle on the right-hand side to run everything in the chunk
+- Try this now!
+
+```{r}
+print("Hello World")
+```
+
+- You can add R chunks by pressing CRTL + ALT + I
+    + or using the Insert menu option
+    + (can also include code from other languages such as Python or bash)
+
 
 # Getting started
 
@@ -914,6 +939,8 @@ boxplot(gapminder$gdpPercap ~ gapminder$continent,col=brewer.pal(5,"Set1"),
 
 We can't really have a run-through of the R language without at least *mentioning* statistics! However, like plotting it is a vast field. The main challenges are putting your data in the correct format (which we have covered here), and deciding which test to use (**which R will not advise you on!**) 
 
+![](https://raw.githubusercontent.com/bioinformatics-core-shared-training/r-for-medics/master/images/clippy.jpg)
+
 - If you have some background in statistics you can see this course from the [Babraham Institute Bioinformatics Core](http://www.bioinformatics.babraham.ac.uk/training/R_Statistics/Introduction%20to%20Statistics%20with%20R.pdf) about how to perform statistical testing in R.
 - If you need a more basic grounding in which statistical test to use, you can see this course from [CRUK Cambridge Institute](http://bioinformatics-core-shared-training.github.io/IntroductionToStats/)
   
@@ -963,14 +990,7 @@ Let's say we want an analysis comprising the following steps:-
 
 Having an R script to do the analysis is fine, but what we really want is a document with the code we used *and* the results it generates. This is where a reporting framework such as ***markdown*** is critical
 
-Let's create a new Markdown file with **File -> New File -> R markdown** and look at the contents.
-
-
-The markdown file can be used as a template to generated PDF, HTML, or even Word documents. The clever bit is that all R code in the template can be execute and the results displayed (tables, graphics etc) along with the code. The compiled document can be passed to your collaborators and they should be able to generate the same results. Alternatively, you can choose to hide the code if your PI just wants to see the results, and not neccesarily what packages, parameters you used. Long-term R users may have heard of *Sweave*. Markdown is the same concept, but an easier to write (and read) syntax
-
-Markdown can also generate presentations and courses. Indeed, all the [materials for this course](https://bioinformatics-core-shared-training.github.io/r-crash-course/) were written in markdown.
-
-![](images/markdown-annotated.png)
+![](https://raw.githubusercontent.com/bioinformatics-core-shared-training/r-for-medics/master/images/markdown-annotated.png)
 
 1. Header information
 2. Section heading
@@ -978,6 +998,39 @@ Markdown can also generate presentations and courses. Indeed, all the [materials
 4. R code to be run
 5. Plain text
 6. R code to be run
+
+*Markdown* is a very simple way of writing a template to produce a pdf, HTML or word document. The compiled version of this document is available online and is more convenient to browse [here](https://bioinformatics-core-shared-training.github.io/cruk-autumn-school-2017/Day1/bioc-intro.nb.html).
+
+- "chunks" of R code can be added using the *insert* option from the toolbar, or the CTRL + ALT + I shortcut
+
+- The code might have different options which dictate how the output is displayed in the compiled document (e.g. HTML)
+    + e.g. you might see `EVAL = FALSE` or `echo = FALSE`
+    + you don't have to worry about this if stepping through the markdown interactively
+
+```{r}
+print("Hello World")
+
+```
+
+*This will be displayed in italic*
+
+**This will be displayed in bold**
+
+
+- this 
+- is 
+- a 
+- list
+    + this is a *sub-list*
+
+You can also add hyperlinks, images and tables. More help is available through RStudio **Help -> Markdown Quick Reference**
+
+
+The markdown file can be used as a template to generated PDF, HTML, or even Word documents. The clever bit is that all R code in the template can be execute and the results displayed (tables, graphics etc) along with the code. The compiled document can be passed to your collaborators and they should be able to generate the same results. Alternatively, you can choose to hide the code if your PI just wants to see the results, and not neccesarily what packages, parameters you used. Long-term R users may have heard of *Sweave*. Markdown is the same concept, but an easier to write (and read) syntax
+
+Markdown can also generate presentations and courses. Indeed, all the [materials for this course](https://bioinformatics-core-shared-training.github.io/r-crash-course/crash-course.nb.html) were written in markdown.
+
+
 
 Each line of R code can be executed in the R console by placing the cursor on the line and pressing `CTRL + ENTER`. You can also highlight multiple lines of code. NB. You do not need to highlight to the backtick (`\``) symbols. 
 
