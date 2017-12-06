@@ -123,6 +123,7 @@ Once installed, you should be able to launch RStudio by clicking on its icon:-
 - The R code can be run from inside the document and the results are displayed directly underneath
 - Each chunk of R code looks something like this.
 
+
 ```{r}
 
 ```
