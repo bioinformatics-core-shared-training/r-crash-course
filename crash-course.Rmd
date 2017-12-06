@@ -933,6 +933,21 @@ boxplot(gapminder$gdpPercap ~ gapminder$continent,col=brewer.pal(5,"Set1"),
         ylab="GDP")
 ```
 
+******
+******
+******
+
+### Exercise
+
+- The plot of population versus GDP shows and obvious set of outliers
+  + which countries years do they points represent?
+  + can you plot these points in a different colour?
+  + could you exclude these points from the plot?
+
+******
+******
+******
+
 
 
 ## Statistical Testing
