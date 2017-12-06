@@ -316,29 +316,6 @@ x
 ```
 
 
-******
-******
-******
-
-### Exercise
-  - `rep` can be used to replicate values. Construct the following sequences 
-    + `1 1 1 1 1 2 2 2 2 2`
-    + `1 2 1 2 1 2 1 2 1 2`
-    + `1 2 1 2 1 2 1 2 1 2 1`
-    + (this last sequence has 11 values in it)
-    
-```{r}
-
-
-
-```
-    
-
-******
-******
-******
-
-
 The square brackets `[]` indicate the position within the vector (the ***index***). We can extract individual elements by using the `[]` notation:
 
 ```{r vectors2}
