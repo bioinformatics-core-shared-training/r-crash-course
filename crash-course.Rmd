@@ -967,8 +967,6 @@ boxplot(gapminder$gdpPercap ~ gapminder$continent,col=brewer.pal(5,"Set1"),
 ******
 ******
 
-
-
 ## Statistical Testing
 
 We can't really have a run-through of the R language without at least *mentioning* statistics! However, like plotting it is a vast field. The main challenges are putting your data in the correct format (which we have covered here), and deciding which test to use (**which R will not advise you on!**) 
@@ -1010,6 +1008,34 @@ t.test(x,y,var.equal = FALSE)
 ```
 
 Were our data not normally-distributed we could use `wilcox.test`, for example.  Fortunately, most statistical tests can be accessed in a similar manner, so it is easy to switch between using different tests provided your data are in the correct format. To re-iterate, the skill is in choosing which test is appropriate.
+
+# Extra Practice
+
+The file `patient-data-cleaned.txt` contains clinical covariates from a fictional study
+
+******
+******
+******
+
+### Exercise
+
+- Read these data into R
+    + how many patients are included in the file?
+    + how many males, how many females?
+    + do males tend to be taller than females?
+    + are smokers heavier than non-smokers?
+    + is there a relationship between height and weight?
+  
+```{r}
+
+
+
+```
+
+
+******
+******
+******
 
 
 # Towards Reproducibility
