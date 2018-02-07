@@ -998,14 +998,10 @@ If our data were paired we could set the argument `paired=TRUE` to use a differe
 t.test(x,y,paired = TRUE)
 ```
 
-Similarly, if our data have different variances we can adjust the test accordingly:-
+Similarly, if our data have similar variances we can adjust the test accordingly:-
 
 ```{r}
-x <- rnorm(20)
-y <- rnorm(20, 5,4)
-df <- data.frame(x,y)
-boxplot(df)
-t.test(x,y,var.equal = FALSE)
+t.test(x,y,var.equal = TRUE)
 ```
 
 Were our data not normally-distributed we could use `wilcox.test`, for example.  Fortunately, most statistical tests can be accessed in a similar manner, so it is easy to switch between using different tests provided your data are in the correct format. To re-iterate, the skill is in choosing which test is appropriate.
