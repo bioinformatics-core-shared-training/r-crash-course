@@ -968,8 +968,6 @@ boxplot(gapminder$gdpPercap ~ gapminder$continent,col=brewer.pal(5,"Set1"),
 ******
 ******
 
-## Statistical Testing
-
 We can't really have a run-through of the R language without at least *mentioning* statistics! However, like plotting it is a vast field. The main challenges are putting your data in the correct format (which we have covered here), and deciding which test to use (**which R will not advise you on!**) 
 
 ![](https://raw.githubusercontent.com/bioinformatics-core-shared-training/r-for-medics/master/images/clippy.jpg)
@@ -977,137 +975,44 @@ We can't really have a run-through of the R language without at least *mentionin
 - If you have some background in statistics you can see this course from the [Babraham Institute Bioinformatics Core](http://www.bioinformatics.babraham.ac.uk/training/R_Statistics/Introduction%20to%20Statistics%20with%20R.pdf) about how to perform statistical testing in R.
 - If you need a more basic grounding in which statistical test to use, you can see this course from [CRUK Cambridge Institute](http://bioinformatics-core-shared-training.github.io/IntroductionToStats/)
   
-The `t.test` function is probably the most fundamental statistical testing function in R, and can be adapted to many different situations. Full details are given in the help page `?t.test`. Lets consider we have two vectors of normally-distributed data that we can visualise using a boxplot.
+The `t.test` function is probably the most fundamental statistical testing function in R, and can be adapted to many different situations. Full details are given in the help page `?t.test`.
+
+
+The life expectancy looks to be different between Europe and Africa
 
 ```{r}
-x <- rnorm(20)
-y <- rnorm(20, 5,1)
-df <- data.frame(x,y)
-boxplot(df)
+boxplot(gapminder$lifeExp ~ gapminder$continent)
 ```
 
 The output from `t.test` can be used to judge if there is a statistically-significant difference in means:-
 
 ```{r}
-t.test(x,y)
+t.test(euroData$lifeExp,afrData$lifeExp)
 ```
 
-If our data were paired we could set the argument `paired=TRUE` to use a different flavour of the test
 
-```{r}
-t.test(x,y,paired = TRUE)
-```
-
-Similarly, if our data have similar variances we can adjust the test accordingly:-
-
-```{r}
-t.test(x,y,var.equal = TRUE)
-```
 
 Were our data not normally-distributed we could use `wilcox.test`, for example.  Fortunately, most statistical tests can be accessed in a similar manner, so it is easy to switch between using different tests provided your data are in the correct format. To re-iterate, the skill is in choosing which test is appropriate.
 
-# Extra Practice
 
-The file `patient-data-cleaned.txt` contains clinical covariates from a fictional study
+There seems to be a relationship between a country's wealth and life expenctancy:-
 
-******
-******
-******
-
-### Exercise
-
-- Read these data into R
-    + how many patients are included in the file?
-    + how many males, how many females?
-    + do males tend to be taller than females?
-    + are smokers heavier than non-smokers?
-    + is there a relationship between height and weight?
-  
 ```{r}
+plot(euroData$gdpPercap,euroData$lifeExp)
+```
 
+```{r}
+cor(euroData$gdpPercap,euroData$lifeExp)
+```
 
+A *linear model* can be used to assess the relationship
 
+```{r}
+model <- lm(euroData$lifeExp~euroData$gdpPercap)
+plot(euroData$gdpPercap,euroData$lifeExp)
+abline(model)
+model$coefficients
 ```
 
 
-******
-******
-******
-
-
-# Towards Reproducibility
-
-Let's say we want an analysis comprising the following steps:-
-
-- read the gapminder data into R
-- select countries in Europe
-- show the relationship between gdp and life expectancy
-- compute the correlation coefficient
-    + (the `cor` function can be used)
-
-Having an R script to do the analysis is fine, but what we really want is a document with the code we used *and* the results it generates. This is where a reporting framework such as ***markdown*** is critical
-
-![](https://raw.githubusercontent.com/bioinformatics-core-shared-training/r-for-medics/master/images/markdown-annotated.png)
-
-1. Header information
-2. Section heading
-3. Plain text
-4. R code to be run
-5. Plain text
-6. R code to be run
-
-*Markdown* is a very simple way of writing a template to produce a pdf, HTML or word document. The compiled version of this document is available online and is more convenient to browse [here](https://bioinformatics-core-shared-training.github.io/cruk-autumn-school-2017/Day1/bioc-intro.nb.html).
-
-- "chunks" of R code can be added using the *insert* option from the toolbar, or the CTRL + ALT + I shortcut
-
-- The code might have different options which dictate how the output is displayed in the compiled document (e.g. HTML)
-    + e.g. you might see `EVAL = FALSE` or `echo = FALSE`
-    + you don't have to worry about this if stepping through the markdown interactively
-``
-
-*This will be displayed in italic*
-
-**This will be displayed in bold**
-
-
-- this 
-- is 
-- a 
-- list
-    + this is a *sub-list*
-
-You can also add hyperlinks, images and tables. More help is available through RStudio **Help -> Markdown Quick Reference**
-
-
-The markdown file can be used as a template to generated PDF, HTML, or even Word documents. The clever bit is that all R code in the template can be execute and the results displayed (tables, graphics etc) along with the code. The compiled document can be passed to your collaborators and they should be able to generate the same results. Alternatively, you can choose to hide the code if your PI just wants to see the results, and not neccesarily what packages, parameters you used. Long-term R users may have heard of *Sweave*. Markdown is the same concept, but an easier to write (and read) syntax
-
-Markdown can also generate presentations and courses. Indeed, all the [materials for this course](https://bioinformatics-core-shared-training.github.io/r-crash-course/crash-course.nb.html) were written in markdown.
-
-
-
-Each line of R code can be executed in the R console by placing the cursor on the line and pressing `CTRL + ENTER`. You can also highlight multiple lines of code. NB. You do not need to highlight to the backtick (`\``) symbols. 
-
-Hitting the ***Knit*** button (*) or Preview will run all R code in order and (providing there are no errors!) you will get a PDF or HTML document. The resultant document will contain all the plain text you wrote, the R code, and any outputs (including graphs, tables etc) that R produced. You can then distribute this document to have a reproducible account of your analysis.
-
-
-
-******
-******
-******
-
-### Exercise
-
-- Open the file `[gapminder-analysis.Rmd](gapminder-analysis.Rmd)`
-- Fill the gaps to complete the analysis described above
-- Make a note of the correlation coefficient in the report
-- Knit into a pdf or HTML document
-
-******
-******
-******
-
-You should notice that there is a final code chunk that runs the command `sessionInfo()`. This will print details of the package names and version numbers that were used in the analysis. This is useful to have for housekeeping purposes, but some people you share the report with might not necesarily care about this information. In markdown, we can stop particular *code chunks* being run or printed to the final report by putting the arguments `eval=FALSE` or `results='hide'` at the start of the chunk.
-
-Another useful feature of a markdown report is to embed R code within the plain text section. For example, rather than hard-coding the correlation coefficient, we could have the R code print this result.
- 
 
