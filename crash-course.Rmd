@@ -961,7 +961,7 @@ The `col` argument to `plot` doesn't have to contain only one colour. We can use
 subset_afr_eur <- gapminder[gapminder$continent %in% c("Europe", "Africa") & gapminder$year == 2002,]
 mycol <- rep("red",nrow(subset_afr_eur))
 
-plot(euroData$pop, euroData$lifeExp,
+plot(subset_afr_eur$pop, subset_afr_eur$lifeExp,
      col=mycol,
      pch=16)
 
