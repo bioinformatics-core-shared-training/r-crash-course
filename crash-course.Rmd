@@ -283,10 +283,10 @@ In the examples above, `seq` and `rnorm` were both outputting a series of number
     + see the help for `round` `?round`
   - How can we a create a sequence from 2 to 20 comprised of 5 equally-spaced numbers?
     + check the help page for seq `?seq`
-  - Create a set of 1000 random numbers with a mean of 2 and a standard deviation
+  - Create a *variable* containing 1000 random numbers with a *mean* of 2 and a *standard deviation* of 3
     + what is the maximum and minimum of these numbers?
     + what is the average?
-    + HINT: see the help pages for functions `min`, `max` and `mean`
+    + HINT: see the help pages for functions `min`, `max` and `mean
     
 ```{r}
 
@@ -735,7 +735,7 @@ head(byWealth)
 write.csv(byWealth, file="dataOrderedByWealth.csv")
 ```
 
-# Plotting and stats (in brief!)
+# Plotting and stats 
 
 All your favourite types of plot can be created in R
 
@@ -938,10 +938,11 @@ boxplot(gapminder$gdpPercap ~ gapminder$continent,col=brewer.pal(5,"Set2"),
 - The plot of population versus GDP shows and obvious set of outliers
   + which countries do the points represent?
   + can you plot these points in a different colour?
-  + can you re-draw the plot without these countries included?
+  + use the `abline` function to draw a vertical line to separate the outliers from the rest of the plot
+    + see below for what the graph is intended to look like
+![](plotting_exercise_target.png)
   
 ```{r}
-
 
 
 ```
@@ -950,6 +951,64 @@ boxplot(gapminder$gdpPercap ~ gapminder$continent,col=brewer.pal(5,"Set2"),
 ******
 ******
 ******
+
+The `col` argument to `plot` doesn't have to contain only one colour. We can use a vector that assigns a colour to each point to be plotted. In the following code we:-
+
+- create a subset of the data describing European and African countries in 2002
+- create a *dummy* vector that is just `red` repeated as many times as rows in the data frame
+
+```{r}
+subset_afr_eur <- gapminder[gapminder$continent %in% c("Europe", "Africa") & gapminder$year == 2002,]
+mycol <- rep("red",nrow(subset_afr_eur))
+
+plot(euroData$pop, euroData$lifeExp,
+     col=mycol,
+     pch=16)
+
+```
+ 
+We can replace the items in the colour vector that correspond to an African country with a different value
+
+- we can now create the same plot as before, but only using the `plot` function once
+ 
+```{r}
+mycol[which(subset_afr_eur$continent == "Africa")] <- "blue"
+plot(subset_afr_eur$pop, subset_afr_eur$lifeExp,
+     col=mycol,
+     pch=16,
+     xlab="Population",
+     ylab="Life Expenctancy")
+```
+
+
+If we preferred, we could plot the data for European and African countries in separate plots side-by-side.
+
+- here we specify a *layout* of the plot using the `mfrow` plotting parameter
+- `c(1,2)` corresponds to 1 *row* and 2 *columns*
+- **make sure you run the entire code chunk at once by pressing the green run button, or highlighting all the lines**
+  + running the code line-by-line won't have the correct effect
+
+```{r}
+par(mfrow=c(1,2))
+
+plot(euroData$pop, euroData$lifeExp,col="red",
+     pch=16,
+     xlab="Population",
+     ylab="Life Expectancy",
+     main="European Countries",
+    xlim=c(0,8e7),ylim=c(30,90))
+
+plot(afrData$pop, afrData$lifeExp,col="blue",
+     pch=16,
+     xlab="Population",
+     ylab="Life Expectancy",
+     main="African Countries",
+    xlim=c(0,8e7),ylim=c(30,90))
+
+
+```
+
+
 
 We can't really have a run-through of the R language without at least *mentioning* statistics! However, like plotting it is a vast field. The main challenges are putting your data in the correct format (which we have covered here), and deciding which test to use (**which R will not advise you on!**) 
 
@@ -1000,6 +1059,5 @@ abline(model)
 model$coefficients
 
 ```
-
 
 
