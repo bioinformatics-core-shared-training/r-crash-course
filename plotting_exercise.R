@@ -1,5 +1,5 @@
 gapminder <- read.csv("gapminder.csv")
-png("plotting_exercise_target.png")
+png("images/plotting_exercise_target.png")
 plot(gapminder$pop,gapminder$lifeExp,pch=16,
      ylab="Life Expectancy",
      xlab="Population",main="Life Expectancy trend with population")
