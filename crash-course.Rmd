@@ -676,6 +676,18 @@ Finally, we have `!=` for testing if something is *not* equal
 gapminder[gapminder$continent != "Europe",]
 ```
 
+You will sometimes see the `which` function used during subsetting. This is used to convert the logical (`TRUE/FALSE`) vector into a numeric vector that gives the positon of the `TRUE` values only
+
+- this is useful if you think your vector might have `NA` (*missing*) values 
+- there are no `NA`values in `gapminder`, so we'll fake an example
+
+```{r}
+tmp <- gapminder
+tmp$pop[1:10] <- NA
+tmp[tmp$pop < 1e6,]
+tmp[which(tmp$pop < 1e6),]
+```
+
 
 ******
 ******
@@ -698,6 +710,21 @@ gapminder[gapminder$continent != "Europe",]
 ******
 ******
 ******
+
+
+Columns in the data frame can be modified, or new columns created
+
+- can use the `$` operator to assign a value to a column that doesn't currently exist
+    + the vector on the right of the assignment `<-` must that a length equal to the number of rows in the data frame
+- can also overwrite existing columns
+
+
+```{r}
+gapminder_extra <- gapminder
+gapminder_extra$PopInMillions <- gapminder_extra$pop / 1000000
+gapminder_extra$lifeExp <- round(gapminder_extra$lifeExp)
+gapminder_extra
+```
 
 
 ## Ordering and sorting
@@ -940,7 +967,7 @@ boxplot(gapminder$gdpPercap ~ gapminder$continent,col=brewer.pal(5,"Set2"),
   + can you plot these points in a different colour?
   + use the `abline` function to draw a vertical line to separate the outliers from the rest of the plot
     + see below for what the graph is intended to look like
-![](plotting_exercise_target.png)
+![](images/plotting_exercise_target.png)
   
 ```{r}
 
